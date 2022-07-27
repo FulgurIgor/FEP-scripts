@@ -288,7 +288,7 @@ export GMX_MAXBACKUP=-1
 #
 pushd {self.path}
 #
-let "JOBinternal=${SLURM_ARRAY_TASK_ID}*${SLURM_NTASKS}+${SLURM_PROCID}"
+let "JOBinternal=${{SLURM_ARRAY_TASK_ID}}*${{SLURM_NTASKS}}+${{SLURM_PROCID}}"
 #
 mpirun -n 1 gmx_mpi mdrun -v -s stateA_water/tpr${{JOBinternal}}.tpr -dhdl stateA_water/dhdl${{JOBinternal}}.xvg -ntomp {self.omp_threads}
 mpirun -n 1 gmx_mpi mdrun -v -s stateB_water/tpr${{JOBinternal}}.tpr -dhdl stateB_water/dhdl${{JOBinternal}}.xvg -ntomp {self.omp_threads}

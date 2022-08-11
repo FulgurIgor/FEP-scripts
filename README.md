@@ -12,7 +12,7 @@ module load anaconda3/python3-5.1.0
 
 Клонирование репозитария:
 ```
-git clone git@github.com:FulgurIgor/FEP-scripts.git
+git clone git@github.com:foxtran/FEP-scripts.git
 ```
 
 ### Установка pmx

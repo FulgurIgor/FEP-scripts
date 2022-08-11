@@ -290,10 +290,10 @@ pushd {self.path}
 #
 let "JOBinternal=${{SLURM_ARRAY_TASK_ID}}*${{SLURM_NTASKS}}+${{SLURM_PROCID}}"
 #
-mpirun -n 1 gmx_mpi mdrun -v -s stateA_water/tpr${{JOBinternal}}.tpr -dhdl stateA_water/dhdl${{JOBinternal}}.xvg -ntomp {self.omp_threads}
-mpirun -n 1 gmx_mpi mdrun -v -s stateB_water/tpr${{JOBinternal}}.tpr -dhdl stateB_water/dhdl${{JOBinternal}}.xvg -ntomp {self.omp_threads}
-mpirun -n 1 gmx_mpi mdrun -v -s stateA_protein/tpr${{JOBinternal}}.tpr -dhdl stateA_protein/dhdl${{JOBinternal}}.xvg -ntomp {self.omp_threads}
-mpirun -n 1 gmx_mpi mdrun -v -s stateB_protein/tpr${{JOBinternal}}.tpr -dhdl stateB_protein/dhdl${{JOBinternal}}.xvg -ntomp {self.omp_threads}
+mpirun -n 1 gmx_mpi mdrun -v -s stateA_water/tpr${{JOBinternal}}.tpr -dhdl stateA_water/dhdl${{JOBinternal}}.xvg -ntomp {self.omp_threads} 2>&1 | tee stateA_water/dhdl${{JOBinternal}}.log_gmx
+mpirun -n 1 gmx_mpi mdrun -v -s stateB_water/tpr${{JOBinternal}}.tpr -dhdl stateB_water/dhdl${{JOBinternal}}.xvg -ntomp {self.omp_threads} 2>&1 | tee stateB_water/dhdl${{JOBinternal}}.log_gmx
+mpirun -n 1 gmx_mpi mdrun -v -s stateA_protein/tpr${{JOBinternal}}.tpr -dhdl stateA_protein/dhdl${{JOBinternal}}.xvg -ntomp {self.omp_threads} 2>&1 | tee stateA_protein/dhdl${{JOBinternal}}.log_gmx
+mpirun -n 1 gmx_mpi mdrun -v -s stateB_protein/tpr${{JOBinternal}}.tpr -dhdl stateB_protein/dhdl${{JOBinternal}}.xvg -ntomp {self.omp_threads} 2>&1 | tee stateB_protein/dhdl${{JOBinternal}}.log_gmx
 #
 popd
 """
